@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+#todo-container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 5px;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  left: -30px;
+}
+
+.task-complete {
+  text-decoration: line-through;
+}
+
+.actions {
+  position: absolute;
+  right: 0;
+  display: flex;
+}
+
+.actions button {
+  margin-left: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  color: #42a5f5;
+}
+
+  </style>
+</head>
+<body>
+  <div id="todo-container">
+    <h1>Todo List</h1>
+    <input type="text" id="todo-input" placeholder="Add a new todo">
+    <button onclick="addTodo()">Add</button>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <script>
+    let todos = [];
+
+function addTodo() {
+  const todoInput = document.getElementById("todo-input");
+  const todoText = todoInput.value.trim();
+  if (todoText !== "") {
+    todos.push({ text: todoText, completed: false });
+    renderTodoList();
+    todoInput.value = "";
+  }
+}
+
+function deleteTodo(index) {
+  todos.splice(index, 1);
+  renderTodoList();
+}
+
+function toggleTodoComplete(index) {
+  todos[index].completed = !todos[index].completed;
+  renderTodoList();
+}
+
+function moveTodoUp(index) {
+  if (index > 0) {
+    const temp = todos[index];
+    todos[index] = todos[index - 1];
+    todos[index - 1] = temp;
+    renderTodoList();
+  }
+}
+
+function moveTodoDown(index) {
+  if (index < todos.length - 1) {
+    const temp = todos[index];
+    todos[index] = todos[index + 1];
+    todos[index + 1] = temp;
+    renderTodoList();
+  }
+}
+
+function renderTodoList() {
+  const todoList = document.getElementById("todo-list");
+  todoList.innerHTML = "";
+
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener("change", () => toggleTodoComplete(index));
+    li.appendChild(checkbox);
+
+    const span = document.createElement("span");
+    span.innerText = todo.text;
+    if (todo.completed) {
+      span.className = "task-complete";
+    }
+    li.appendChild(span);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const upButton = document.createElement("button");
+    upButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    upButton.addEventListener("click", () => moveTodoUp(index));
+    actions.appendChild(upButton);
+
+    const downButton = document.createElement("button");
+    downButton.innerHTML = '<i class="fas fa-chevron-down"></i>';
+    downButton.addEventListener("click", () => moveTodoDown(index));
+    actions.appendChild(downButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+    deleteButton.addEventListener("click", () => deleteTodo(index));
+    actions.appendChild(deleteButton);
+
+    li.appendChild(actions);
+    todoList.appendChild(li);
+  });
+}
+
+  </script>
+</body>
+</html>

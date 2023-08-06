@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+#todo-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 4px;
+  border: 2px solid black;
+}
+
+h1 {
+  text-align: center;
+}
+
+#todo-form {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 5px;
+}
+
+button {
+  padding: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+label {
+  flex: 1;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+button.delete {
+  background-color: #f44336;
+  border-radius: 50%;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+button.delete:hover {
+  background-color: #e53935;
+}
+
+button.up,
+button.down {
+  background-color: #42a5f5;
+  border-radius: 50%;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+button.up:hover,
+button.down:hover {
+  background-color: #1e88e5;
+}
+
+  </style>
+  <!-- <link rel="stylesheet" type="text/css" href="Harshit.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div id="todo-container">
+    <h1>To-Do List</h1>
+    <input type="text" id="todo-input" placeholder="Add A New To-Do Harshit">
+    <button onclick="addTodo()"><i class="fas fa-plus"></i></button>
+    <ul id="todo-list"></ul>
+  </div>
+
+  <!-- <script src="Harshit.js"></script> -->
+  <script>
+   let todos = [];
+
+function addTodo() {
+  const todoInput = document.getElementById("todo-input");
+  const todoText = todoInput.value.trim();
+  if (todoText !== "") {
+    todos.push({ text: todoText, completed: false });
+    renderTodoList();
+    todoInput.value = "";
+  }
+}
+
+function deleteTodo(index) {
+  todos.splice(index, 1);
+  renderTodoList();
+}
+
+function toggleTodoCompleted(index) {
+  todos[index].completed = !todos[index].completed;
+  renderTodoList();
+}
+
+function moveTodoUp(index) {
+  if (index > 0) {
+    const temp = todos[index];
+    todos[index] = todos[index - 1];
+    todos[index - 1] = temp;
+    renderTodoList();
+  }
+}
+
+function moveTodoDown(index) {
+  if (index < todos.length - 1) {
+    const temp = todos[index];
+    todos[index] = todos[index + 1];
+    todos[index + 1] = temp;
+    renderTodoList();
+  }
+}
+
+function renderTodoList() {
+  const todoList = document.getElementById("todo-list");
+  todoList.innerHTML = "";
+
+  todos.forEach((todo, index) => {
+    const li = document.createElement("li");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = todo.completed;
+    checkbox.onclick = () => toggleTodoCompleted(index);
+    li.appendChild(checkbox);
+
+    const todoText = document.createElement("span");
+    todoText.innerText = todo.text;
+    if (todo.completed) {
+      todoText.classList.add("completed");
+    }
+    li.appendChild(todoText);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "&#10006;";
+    deleteButton.className = "delete";
+    deleteButton.onclick = () => deleteTodo(index);
+    li.appendChild(deleteButton);
+
+    if (index > 0) {
+      const upButton = document.createElement("button");
+      upButton.innerHTML = "&#8593;";
+      upButton.className = "up";
+      upButton.onclick = () => moveTodoUp(index);
+      li.appendChild(upButton);
+    }
+
+    if (index < todos.length - 1) {
+      const downButton = document.createElement("button");
+      downButton.innerHTML = "&#8595;";
+      downButton.className = "down";
+      downButton.onclick = () => moveTodoDown(index);
+      li.appendChild(downButton);
+    }
+
+    todoList.appendChild(li);
+  });
+}
+
+
+  </script>
+</body>
+</html>
