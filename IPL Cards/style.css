@@ -1,0 +1,56 @@
+.heading{
+    text-align: center;
+    padding: 30px;
+}
+.team {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  
+
+  }
+  img{
+    width: 200px;
+    height: 260px;
+  }
+  .player-card {
+    width: 200px;
+    height: 260px;
+    perspective: 800px;
+    position: relative;
+    margin-bottom: 40px;
+    
+    
+  }
+  
+  .card {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 2px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .card-front {
+    transform: rotateY(0deg);
+  }
+  
+  .card-back {
+    transform: rotateY(180deg);
+    background-color: #f1f1f1;
+    text-align: center;
+  }
+  
+  .player-card:hover .card {
+    transform: rotateY(180deg);
+  }
