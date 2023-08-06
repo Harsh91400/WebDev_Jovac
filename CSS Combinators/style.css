@@ -1,0 +1,29 @@
+/* Descedent Combinators */
+article p strong{
+    color:lightseagreen;
+    font-size: 40px;
+}
+
+ article p span em{
+    color:aqua;
+    text-transform: uppercase;
+}
+
+
+/* Child Combinators */
+ul >li{
+    border-top:2px solid aqua;
+}
+
+
+
+/* Adjacent Combinators */
+h4+p{
+    color:rgb(8, 235, 8);
+}
+
+/* General Sibling Combinators */
+h3~p{
+    color:lightcoral;
+    text-decoration: line-through;
+}
