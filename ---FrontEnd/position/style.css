@@ -1,0 +1,12 @@
+h2,h3{
+    border:2px solid black;
+}
+h2{
+    position: sticky;
+    background: aqua;
+    top:0;
+}
+h3{
+    background: yellow;
+    z-index: ;
+}
