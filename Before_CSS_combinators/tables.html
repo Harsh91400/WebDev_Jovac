@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table</title>
+    <style>
+        table{
+            background: aqua;
+        }
+    </style>
+</head>
+<body>
+     <table border="5" cellspacing="5" cellpadding="10">
+        <th>Days/Periods</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <tr>
+            <td>Mon</td>
+            <td colspan="2">Math</td>
+            <!-- <td>Math</td> -->
+            <td>Games</td>
+            <td rowspan = "2">Coding</td>
+        </tr>
+        <tr>
+            <td>Tus</td>
+            <td>Science</td>
+            <td>Games</td>
+            <td>Math</td>
+            <!-- <td>Coding</td> -->
+        </tr>
+        <tr>
+            <td>Wed</td>
+            <td>Coding</td>
+            <td>Math</td>
+            <td rowspan="2">Games</td>
+            <td rowspan ="2">Science</td>
+        </tr>
+        <tr>
+            <td>Thu</td>
+            <td>Math</td>
+            <td>Coding</td>
+            <!-- <td>Games</td> -->
+            <!-- <td>Science</td> -->
+        </tr>
+        <tr>
+            <td>Fri</td>
+            <td>Coding</td>
+            <td>Science</td>
+            <td>Games</td>
+            <td>Math</td>
+        </tr>
+
+        <tr>
+            <th colspan="5">This is Time Table for class I</th>
+        </tr>
+     </table>
+</body>
+</html>

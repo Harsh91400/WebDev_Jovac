@@ -1,0 +1,30 @@
+body{
+    
+    /*text-emphasis-color: white;
+    text-decoration-color: aqua; */
+    /* border: 300px solid rgb(6, 149, 94); */
+    /* height: 15px;
+    width: 15px;
+    margin:2px ; */
+}
+div{
+    background:aqua;
+    padding: 25px;
+    margin: 2px;
+    border: 2px solid rgb(0, 9, 18);
+   
+}
+#rcorner{
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background: rgb(4, 131, 156);
+    background-position: right top;
+    background-repeat: repeat;
+    width: 200px;
+    height: 150px;
+
+}
+hr{
+    border: 2px solid black;
+}

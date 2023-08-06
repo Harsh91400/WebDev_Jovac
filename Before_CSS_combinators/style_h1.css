@@ -1,0 +1,30 @@
+body{
+    background:#3377ff;
+    
+}
+table{
+    border: 1px solid black;
+    background: #0eacb7;
+}
+th{
+    border: 2px solid mediumseagreen;
+}
+td{
+    border:2px solid rebeccapurple;
+}
+hb{
+    color: rgb(26, 83, 227);
+    background: #34f66b;
+   
+}
+img{
+    width:25%;
+}
+#para1{
+    text-align: center;
+    color: red;
+}
+.center{
+    text-align: center;
+    color: red;
+}
